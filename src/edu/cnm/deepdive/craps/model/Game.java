@@ -5,6 +5,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * This shows the actual variations of a craps game and the different scenarios past the four
+ * main states that are of a potential outcome.
+ *
+ * @author Michael Sanchez, Deep Dive Coding, Java + Android cohort 6
+ * @version 1.0
+ */
 public class Game {
 
   private int pointValue;
@@ -14,11 +21,21 @@ public class Game {
   private long wins;
   private long losses;
 
+  /**
+   * This is a constructor, which establishes the need for a random number generator, <code>rng</code>,
+   * The class is to be used through the rest of its current package.
+   * @param rng Generates a number, which is then used within the <code>rolls</code> and <code>LinkedList</code>.
+   *
+   */
   public Game(Random rng) {
     this.rng = rng;
     rolls = new LinkedList<>();
   }
 
+  /**
+   * This is a reset which restarts the <code>COME_OUT</code> state.  In short, this allows the game
+   * to restart.
+   */
   public void reset() {
     state = State.COME_OUT;
     pointValue = 0;
@@ -38,6 +55,10 @@ public class Game {
     rolls.add(diceRoll);
   }
 
+  /**
+   * This adds a count to number of wins and losses from the game.
+   * @return the result of a win or loss is returned to a tally.
+   */
   public State play() {
     while (state != State.WIN && state != State.LOSS) {
       roll();
@@ -58,6 +79,10 @@ public class Game {
     return state;
   }
 
+  /**
+   * This is a deep copy of the list.
+   * @return deep copy and tally of the game.
+   */
   public List<int[]> getRolls() {
     List <int[]> copy= new LinkedList<int[]>();
     for (int [] roll: rolls){
